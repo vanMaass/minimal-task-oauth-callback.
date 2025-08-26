@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>MinimalTask OAuth Callback</title>
+</head>
+<body>
+  <h1>OAuth2 Callback</h1>
+  <p id="code"></p>
+  <script>
+    // Extrahiere den Code aus der URL
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('code');
+    document.getElementById('code').textContent = code
+      ? `Authorization Code: ${code}`
+      : 'Kein Code gefunden.';
+    // Optional: Weiterleitung an die App per Deep Link
+    if (code) {
+      window.location.href = `minimal-task://oauth-callback?code=${code}`;
+    }
+  </script>
+</body>
+</html>
